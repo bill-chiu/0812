@@ -61,7 +61,17 @@
 					drawBrick(j, i, bricks[i][j]);
 				}
 			}
-		}
+        }
+        function createItem(){
+
+            drawitem();
+            
+        }
+        function drawitem()
+        
+        {
+            context.fillStyle = 'rgba(200,100,50)';
+        }
 
 		// draw a single brick
 		function drawBrick(x, y, type) {
@@ -169,6 +179,8 @@
                 // give player an extra point when the brick disappears
                 score += 2;     
                 breakingSound.play();
+                createItem();
+                drawitem();
             }
         }
         
@@ -191,8 +203,7 @@
                             if ((ballY + ballDeltaY -ballRadius<= brickY + brickHeight) &&
                                 (ballY + ballDeltaY + ballRadius >= brickY)){                                                   
                                 // weaken brick and increase score
-                                explodeBrick(i,j);
-
+                                explodeBrick(i,j);                        
                                 bumpedX = true;
                             }
                         }
