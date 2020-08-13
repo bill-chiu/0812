@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Lab</title>
-<style type="text/css">
-.box {
-	position: fixed;
-	top: -200px;
-	left: 30%;
-	width: 450px;
-	background-color: #fff;
-	color: #7F7F7F;
-	padding: 20px;
-	border: 2px solid #ccc;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	-khtml-border-radius: 20px;
-	-moz-box-shadow: 0 1px 5px #333;
-	-webkit-box-shadow: 0 1px 5px #333;
-	z-index: 101;
-	-webkit-transition: all 3s ease-out;
-	-ms-transition: all 3s ease-out;
-	transition: all 3s ease-out;
-}
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="jquery.js"></script>
+	<title>Lab</title>
+	<style type="text/css">
+		.box {
+			position: fixed;
+			top: -200px;
+			left: 30%;
+			width: 450px;
+			background-color: #fff;
+			color: #7F7F7F;
+			padding: 20px;
+			border: 2px solid #ccc;
+			-moz-border-radius: 20px;
+			-webkit-border-radius: 20px;
+			-khtml-border-radius: 20px;
+			-moz-box-shadow: 0 1px 5px #333;
+			-webkit-box-shadow: 0 1px 5px #333;
+			z-index: 101;
+			-webkit-transition: all 3s ease-out;
+			-ms-transition: all 3s ease-out;
+			transition: all 3s ease-out;
+		}
 
-.box h1 {
-	border-bottom: 1px dashed #7F7F7F;
-	margin: -20px -20px 0px -20px;
-	padding: 10px;
-	background-color: #FFEFEF;
-	color: #EF7777;
-	-moz-border-radius: 20px 20px 0px 0px;
-	-webkit-border-top-left-radius: 20px;
-	-webkit-border-top-right-radius: 20px;
-	-khtml-border-top-left-radius: 20px;
-	-khtml-border-top-right-radius: 20px;
-}
+		.box h1 {
+			border-bottom: 1px dashed #7F7F7F;
+			margin: -20px -20px 0px -20px;
+			padding: 10px;
+			background-color: #FFEFEF;
+			color: #EF7777;
+			-moz-border-radius: 20px 20px 0px 0px;
+			-webkit-border-top-left-radius: 20px;
+			-webkit-border-top-right-radius: 20px;
+			-khtml-border-top-left-radius: 20px;
+			-khtml-border-top-right-radius: 20px;
+		}
 
-a.boxclose {
-	float: right;
-	width: 26px;
-	height: 26px;
-	background: transparent url(images/cancel.png) repeat top left;
-	margin-top: -30px;
-	margin-right: -30px;
-	cursor: pointer;
-}
-</style>
+		a.boxclose {
+			float: right;
+			width: 26px;
+			height: 26px;
+			background: transparent url(images/cancel.png) repeat top left;
+			margin-top: -30px;
+			margin-right: -30px;
+			cursor: pointer;
+		}
+	</style>
 </head>
+
 <body>
 	<img src="images/clickme.png" onclick="doAnimateShow();">
 
@@ -59,21 +62,30 @@ a.boxclose {
 	</div>
 
 	<script>
+
 		function doAnimateShow() {
-			document.getElementById("box").style.left = event.clientX + "px";
-			document.getElementById("box").style.top = event.clientY + "px";
+			//document.getElementById("box").style.left = event.clientX + "px";
+			$("#box").css("left", event.x + "px");
+
+			//document.getElementById("box").style.top = event.clientY + "px";
+			$("#box").css("top", event.y + "px");
 		}
 
 		function doAnimateHide() {
-			document.getElementById("box").style.top = "-200px";
-			event.cancelBubble = true;
+			//document.getElementById("box").style.top = "-200px";
+			$("#box").css("top", -200 + "px");
+			//event.cancelBubble = true;
+			event.stopPropagation();
 		}
+	
+		//document.getElementById("boxclose").onclick = doAnimateHide;
+		$("boxclose").on("click",doAnimateHide);
 		
-		document.getElementById("boxclose").onclick = doAnimateHide;
-		
-		document.onclick = doAnimateShow;
-		
+		//document.onclick = doAnimateShow;
+		$(document).on("click", doAnimateShow);
+
 	</script>
 
 </body>
+
 </html>
