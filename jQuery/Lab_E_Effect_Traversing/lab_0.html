@@ -19,6 +19,7 @@
                 <img id="imgDog"
                      src="images/dog.jpeg"
                      class="pet img-responsive img-thumbnail"
+                     data-species="狗" 
                       />
             </div>
 
@@ -26,6 +27,7 @@
                 <img id="imgCat"
                      src="images/cat.jpeg"
                      class="pet img-responsive img-thumbnail"
+                     data-species="貓" 
                       />
             </div>
 
@@ -33,6 +35,7 @@
                 <img id="imgRabbit"
                      src="images/rabbit.jpeg"
                      class="pet img-responsive img-thumbnail"
+                     data-species="兔子" 
                       />
             </div>
 
@@ -83,8 +86,21 @@ $(function () {
     // 請接著寫作
     // Lab 程式:
 
-    
+    showToast("Hint", "請點一下正確的圖案");
 
+    $(".pet").click(function () {
+        var species = $(this).data("species");
+        if (species != "貓") {
+            showToast("Hint", "不對喔! 我是" + species);
+            $(this).fadeOut("fast");
+        }
+        else {
+            showToast("Note", "答對了! XD");
+            //$("#imgDog").fadeTo("fast", 0.50);
+            //$("#imgRabbit").fadeTo("fast", 0.50);
+            $(".pet").not("img[data-species='貓']").fadeTo("fast", 0.50);
+        }
+    });
 
 
 
