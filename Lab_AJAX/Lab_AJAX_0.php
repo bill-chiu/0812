@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -28,6 +30,48 @@
 		</select> 
 		<input type="submit" value="OK" /> 
 	</form>
+
+		<div id ="debug"></div>
+		<script>
+			////如何一開始選單就是A1,A2,A3,A4,A5
+			////法１
+			// window.onload = function() {
+
+			////法2
+			// $(document).ready(function() {
+
+			////法3
+			// $(function(){	
+
+			// 	$.ajax({
+			// 		type:"get",
+			// 		url:`./getLetterNumber.php?letter=A`,
+			// 	}).then(function(e){
+			// 		$("#letterNumber").html(e);
+			// 	})
+			// });
+
+			$("#letter").on("change",function(){
+				var selectter =$("#letter option:selected").text();
+				var urlabc =`./getLetterNumber.php?letter=${selectter}`;
+
+				$.ajax({
+					type:"get",
+					url:urlabc,
+				}).then(function(e){
+					// $("#debug").text(e);
+					$("#letterNumber").html(e);
+				})
+			})
+
+			////法4
+			$("#letter").trigger("change");
+
+		</script>
+
+
+
+
 
 </body>
 </html>
