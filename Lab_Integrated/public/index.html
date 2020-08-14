@@ -80,8 +80,6 @@
                                class="form-control"
                                placeholder="yyyy-mm-dd 例如: 2017-05-20">
                     </div>
-
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -155,6 +153,15 @@ $(function () {
 
     // 練習與任務:
 
+    for(let i=0;i<newsList.length;i++){
+
+        var newsItem= newsList[i];
+        // var liText =newsItem.title +"["+newsItem.ymd +"]";
+        var liText =`${newsItem.title}[${newsItem.ymd}]`;
+        
+        showToast("test",liText);
+
+    }
 
 
 
