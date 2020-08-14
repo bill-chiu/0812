@@ -157,9 +157,10 @@ $(function () {
 
         var newsItem= newsList[i];
         // var liText =newsItem.title +"["+newsItem.ymd +"]";
-        var liText =`${newsItem.title}[${newsItem.ymd}]`;
-        
-        showToast("test",liText);
+        var liText =`'<li>'${newsItem.title}[${newsItem.ymd}]'</li>'`;
+
+        alert(liText);
+        // showToast("test",liText);
 
     }
 
