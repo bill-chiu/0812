@@ -164,15 +164,16 @@
                 ];
 
             // 練習與任務:
-
-            $.ajax({
-                type: 'get',
-                url: "/home/news"
-            }).then(function (e) {
-                newsList = JSON.parse(e);
-                refreshUI();
-            })
-
+            // function reloadfresh() {
+                $.ajax({
+                    type: 'get',
+                    url: "/home/news"
+                }).then(function (e) {
+                    newsList = JSON.parse(e);
+                    refreshUI();
+                })
+            // }
+            // reloadfresh();
             function refreshUI() {
                 $("#latestNews").empty();
                 for (let i = 0; i < newsList.length; i++) {
@@ -188,25 +189,28 @@
                 }
             }
 
-            $("#newItem").on("click",function(){
-                $("#newsModal").modal({backdrop:"static"});
-            })        
-
-            $("#okButton").on("click",function(){
-                $("#newsModal").modal("hide");
-
-                let datainserver ={
-                    title:$("#titleTextBox").prop("value"),
-                    ymd:$("#ymdTextBox").val()
-                }
-                
-                 alert(JSON.stringify(datainserver));
-
+            $("#newItem").on("click", function () {
+                $("#newsModal").modal({ backdrop: "static" });
             })
 
+            $("#okButton").on("click", function () {
+                $("#newsModal").modal("hide");
 
+                let datainserver = {
+                    title: $("#titleTextBox").prop("value"),
+                    ymd: $("#ymdTextBox").val()
+                }
 
+                $.ajax({
+                    type: "post",
+                    url: "/home/news",
+                    contentType: "application/json",
+                    data: JSON.stringify(datainserver)
+                }).then(function(){
+                
+                })
 
+            })
 
         })  // end of init.
 
