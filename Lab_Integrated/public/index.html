@@ -164,6 +164,9 @@
                 ];
 
             // 練習與任務:
+
+                  reloadfresh();
+
             function reloadfresh() {
                 $.ajax({
                     type: 'get',
@@ -173,7 +176,7 @@
                     refreshUI();
                 })
             }
-            reloadfresh();
+      
             function refreshUI() {
                 $("#latestNews").empty();
                 for (let i = 0; i < newsList.length; i++) {
@@ -187,10 +190,26 @@
                     $li.appendTo("#latestNews");
 
                 }
-                $(".deleteItem").on("click",function(){
-                    // var index=$(this).closest("li").index();
-                    var index=$(this).parent().parent().index();
-                    alert(index);
+                $(".editItem").on("click", function () {
+                    var eIndex = $(this).closest("li").index();
+                    currentIndex = eIndex;
+                    $("#titleTextBox").val(newsList[eIndex].title);
+                    $("#ymdTextBox").val(newsList[eIndex].ymd);
+                    $("#newsModal").modal({ backdrop: "static" });
+
+                })
+                $(".deleteItem").on("click", function () {
+                    var index = $(this).closest("li").index();
+                    // var index = $(this).parent().parent().index();
+
+                    $.ajax({
+                        type: "delete",
+                        url: "/home/news",
+                        data: newsList[index]
+                    }).then(function () {
+                        reloadfresh();
+                        // alert(newsList[index].newsId);
+                    })
                 })
             }
 
@@ -211,7 +230,7 @@
                     url: "/home/news",
                     contentType: "application/json",
                     data: JSON.stringify(datainserver)
-                }).then(function(){
+                }).then(function () {
                     reloadfresh();
                 })
 
