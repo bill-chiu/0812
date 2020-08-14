@@ -187,6 +187,11 @@
                     $li.appendTo("#latestNews");
 
                 }
+                $(".deleteItem").on("click",function(){
+                    // var index=$(this).closest("li").index();
+                    var index=$(this).parent().parent().index();
+                    alert(index);
+                })
             }
 
             $("#newItem").on("click", function () {
