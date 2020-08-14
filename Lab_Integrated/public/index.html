@@ -157,10 +157,11 @@ $(function () {
 
         var newsItem= newsList[i];
         // var liText =newsItem.title +"["+newsItem.ymd +"]";
-        var liText =`'<li>'${newsItem.title}[${newsItem.ymd}]'</li>'`;
+        var liText =`<li>${newsItem.title}[${newsItem.ymd}]</li>`;
 
-        alert(liText);
+        // alert(liText);
         // showToast("test",liText);
+        $("#latestNews").append(liText);
 
     }
 
