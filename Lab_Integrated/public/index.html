@@ -162,8 +162,9 @@ $(function () {
         // showToast("test",liText);
         var $li =$("<li></li>")
             .text(liText)
-            .addClass("list-group-item");         
-        $("#latestNews").append($li);
+            .addClass("list-group-item"); 
+            $li.appendTo("#latestNews"); 
+        // $("#latestNews").append($li);
 
     }
 
