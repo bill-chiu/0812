@@ -4,7 +4,7 @@ Lab: 綜合演練
 1.  建立資料庫
 
 執行下列 SQL Script 以建立本次練習所需的資料庫。
-
+drop database labDB;
 create database labDB default character set utf8;
 use labDB;
 create table news
@@ -43,6 +43,7 @@ npm install body-parser
 npm install express-session
 npm install ejs
 npm install mysql
+
 
   <Note>
   Lab_Integrated 資料夾會多出一個 node_modules 子資料夾
