@@ -196,10 +196,11 @@
                 $("#newsModal").modal("hide");
 
                 let datainserver ={
-                    title:"test1",
-                    ymd:"ymd value"
+                    title:$("#titleTextBox").prop("value"),
+                    ymd:$("#ymdTextBox").val()
                 }
-                alert(JSON.stringify(datainserver));
+                
+                 alert(JSON.stringify(datainserver));
 
             })
 
