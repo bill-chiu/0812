@@ -164,8 +164,8 @@
                 ];
 
             // 練習與任務:
-
-                  reloadfresh();
+            var currentIndex = -1;
+            reloadfresh();
 
             function reloadfresh() {
                 $.ajax({
@@ -176,7 +176,7 @@
                     refreshUI();
                 })
             }
-      
+
             function refreshUI() {
                 $("#latestNews").empty();
                 for (let i = 0; i < newsList.length; i++) {
@@ -218,22 +218,23 @@
             })
 
             $("#okButton").on("click", function () {
-                $("#newsModal").modal("hide");
+                if (currentIndex < 0){
+                    $("#newsModal").modal("hide");
 
-                let datainserver = {
-                    title: $("#titleTextBox").prop("value"),
-                    ymd: $("#ymdTextBox").val()
+                    let datainserver = {
+                        title: $("#titleTextBox").prop("value"),
+                        ymd: $("#ymdTextBox").val()
+                    }
+
+                    $.ajax({
+                        type: "post",
+                        url: "/home/news",
+                        contentType: "application/json",
+                        data: JSON.stringify(datainserver)
+                    }).then(function () {
+                        reloadfresh();
+                    })
                 }
-
-                $.ajax({
-                    type: "post",
-                    url: "/home/news",
-                    contentType: "application/json",
-                    data: JSON.stringify(datainserver)
-                }).then(function () {
-                    reloadfresh();
-                })
-
             })
 
         })  // end of init.
