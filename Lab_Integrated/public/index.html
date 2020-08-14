@@ -195,8 +195,7 @@
                     currentIndex = eIndex;
                     $("#titleTextBox").val(newsList[eIndex].title);
                     $("#ymdTextBox").val(newsList[eIndex].ymd);
-                    $("#newsModal").modal({ backdrop: "static" });
-
+                    $("#newsModal").modal({ backdrop: "static" });                    
                 })
                 $(".deleteItem").on("click", function () {
                     var index = $(this).closest("li").index();
@@ -214,18 +213,17 @@
             }
 
             $("#newItem").on("click", function () {
+                currentIndex = -1;
                 $("#newsModal").modal({ backdrop: "static" });
             })
 
             $("#okButton").on("click", function () {
-                if (currentIndex < 0){
+                if (currentIndex < 0) {
                     $("#newsModal").modal("hide");
-
                     let datainserver = {
                         title: $("#titleTextBox").prop("value"),
                         ymd: $("#ymdTextBox").val()
                     }
-
                     $.ajax({
                         type: "post",
                         url: "/home/news",
@@ -234,6 +232,22 @@
                     }).then(function () {
                         reloadfresh();
                     })
+                }
+                else {
+                    $("#newsModal").modal("hide");
+
+                        console.log(currentIndex);
+                        newsList[currentIndex].title= $("#titleTextBox").prop("value"),
+                        newsList[currentIndex].ymd= $("#ymdTextBox").val()
+             
+                    $.ajax({
+                        type: "put",
+                        url: "/home/news",                   
+                        data: newsList[currentIndex]
+                    })
+                        .then(function () {
+                            reloadfresh();
+                        })
                 }
             })
 
