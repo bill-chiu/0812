@@ -164,7 +164,7 @@
                 ];
 
             // 練習與任務:
-            // function reloadfresh() {
+            function reloadfresh() {
                 $.ajax({
                     type: 'get',
                     url: "/home/news"
@@ -172,8 +172,8 @@
                     newsList = JSON.parse(e);
                     refreshUI();
                 })
-            // }
-            // reloadfresh();
+            }
+            reloadfresh();
             function refreshUI() {
                 $("#latestNews").empty();
                 for (let i = 0; i < newsList.length; i++) {
@@ -207,7 +207,7 @@
                     contentType: "application/json",
                     data: JSON.stringify(datainserver)
                 }).then(function(){
-                
+                    reloadfresh();
                 })
 
             })
